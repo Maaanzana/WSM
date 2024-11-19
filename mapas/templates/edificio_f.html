@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edificio F</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            box-sizing: border-box;
+        }
+
+        #wsm-link {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        #wsm-link:hover {
+            color: #45a049;
+        }
+        nav {
+            display: flex;
+            gap: 1px;
+            font-size: 1.2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 8px;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: white;
+            color: #4CAF50;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            text-align: center;
+            margin: 0;
+            flex-grow: 1;
+            text-align: center;
+        }
+        h2 {
+            font-size: 1.8rem;
+            text-align: center;
+            margin: 0;
+            padding-left: 160px;
+            flex-grow: 1; 
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        #image-container {
+            width: 100%;
+            max-width: 1240px; 
+            height: auto;
+            max-height: 640px; 
+            border: 3px solid #ddd;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px; 
+        }
+
+        #image-container img {
+            width: 100%;  
+            height: auto; 
+            display: none;
+            border-radius: 10px;
+        }
+
+        #radio1:checked ~ #image-container #img1,
+        #radio2:checked ~ #image-container #img2,
+        #radio3:checked ~ #image-container #img3,
+        #radio4:checked ~ #image-container #img4,
+        #radio5:checked ~ #image-container #img5 {
+            display: block;
+        }
+
+        .button-container {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .floor-button {
+            padding: 12px 25px;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            text-align: center;
+            user-select: none;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .floor-button:hover {
+            background-color: #45a049;
+        }
+
+        .floor-button:active {
+            transform: scale(0.98);
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.2em;
+            cursor: pointer;
+            border: none;
+        }
+        .btn:hover {
+            background-color: #269e48;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/" id="wsm-link">WSM</a>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/sobre-nosotros/">Sobre Nosotros</a>
+            <a href="/ingresar/">Ingresar</a>
+            <a href="/registrarse/">Registrarse</a>
+            <h2>Edificio F</h2>
+        </nav>
+        
+    </header>
+
+    <p>Presione en cualquier baño del mapa para entrar en la descripción del baño de manera más detallada.</p>
+
+
+    <!-- Radios invisibles para controlar las imágenes -->
+    <input type="radio" name="image-selector" id="radio1" checked style="display:none;">
+    <input type="radio" name="image-selector" id="radio2" style="display:none;">
+    <input type="radio" name="image-selector" id="radio3" style="display:none;">
+    <input type="radio" name="image-selector" id="radio4" style="display:none;">
+    <input type="radio" name="image-selector" id="radio5" style="display:none;">
+
+    {% load static %}
+
+    <div id="image-container">
+        <!-- Imágenes con distintos IDs y `usemap` en cada una -->
+        <img id="img1" src="{% static 'mapas/edificio_f#s12.0.jpg' %}" alt="Piso S1" usemap="#img1-map">
+        <img id="img2" src="{% static 'mapas/edificio_f#12.0.jpg' %}" alt="Piso 1" usemap="#img2-map">
+        <img id="img3" src="{% static 'mapas/edificio_f#2.jpg' %}" alt="Piso 2" usemap="#img3-map">
+        <img id="img4" src="{% static 'mapas/edificio_f#3.jpg' %}" alt="Piso 3" usemap="#img4-map">
+        <img id="img5" src="{% static 'mapas/edificio_f#4.jpg' %}" alt="Piso 4" usemap="#img5-map">
+    </div>
+
+    <map name="#img1-map">
+        <area alt="Baño mujeres F #S1" title="Baño mujeres F #S1" href="/baño/4/" coords="1751,155,1937,155,1942,459,1751,459" shape="poly">
+        <area alt="Baño hombres F #S1" title="Baño hombres F #S1" href="/baño/3/" coords="1947,155,2148,155,2148,459,1947,454" shape="poly">
+    </map>
+
+    <map name="#img2-map">
+        <area alt="Baño mujeres F #1" title="Baño mujeres F #1" href="/baño/6/" coords="8630,2516,8930,2516,8921,2817,8630,2817" shape="poly">
+        <area alt="Baño hombres F #1" title="Baño hombres F #1" href="/baño/5/" coords="8310,2536,8630,2536,8630,2828,8310,2847" shape="poly">
+        <area alt="Baño discapacitado F #1" title="Baño discapacitado F #1" href="/baño/7/" coords="8698,2342,8930,2342,8930,2546,8698,2536" shape="poly">
+    </map>
+
+    <map name="#img3-map">
+        <!-- Mapa para el Piso 2 (por definir) -->
+    </map>
+    <map name="#img4-map">
+        <!-- Mapa para el Piso 3 (por definir) -->
+    </map>
+    <map name="#img5-map">
+        <!-- Mapa para el Piso 4 (por definir) -->
+    </map>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/image-map-resizer/1.0.10/js/imageMapResizer.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            imageMapResize(); // Ajusta las áreas al cargar la primera imagen
+            
+            // Reajustar el mapa de imagen cada vez que cambie la imagen
+            const radios = document.querySelectorAll('input[name="image-selector"]');
+            radios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    setTimeout(imageMapResize, 100); // Ajustar el mapa con un pequeño retraso
+                });
+            });
+        });
+    </script>
+
+    <!-- Botones que activan cada radio -->
+    <div class="button-container">
+        <label for="radio1" class="floor-button">Piso S1</label>
+        <label for="radio2" class="floor-button">Piso 1</label>
+        <label for="radio3" class="floor-button">Piso 2</label>
+        <label for="radio4" class="floor-button">Piso 3</label>
+        <label for="radio5" class="floor-button">Piso 4</label>
+    </div>
+    
+    <button onclick="history.back();">Volver</button> 
+</body>
+</html>

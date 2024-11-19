@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edificio A</title>
+    <style>
+        /* Diseño base */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            box-sizing: border-box;
+        }
+
+        #wsm-link {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        #wsm-link:hover {
+            color: #45a049;
+        }
+        nav {
+            display: flex;
+            gap: 1px;
+            font-size: 1.2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 8px;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: white;
+            color: #4CAF50;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            text-align: center;
+            margin: 0;
+            flex-grow: 1; /* Hace que el título ocupe el espacio restante */
+            text-align: center;
+        }
+        h2 {
+            font-size: 1.8rem;
+            text-align: center;
+            margin: 0;
+            padding-left: 155px;
+            flex-grow: 1; /* Hace que el título ocupe el espacio restante */
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        #image-container {
+            width: 1240px;
+            height: 640px;
+            border: 3px solid #ddd;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        #image-container img {
+            width: auto;
+            height: 100%;
+            max-width: 100%;
+            display: block;
+            border-radius: 10px;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.2em;
+            cursor: pointer;
+            border: none;
+        }
+        .btn:hover {
+            background-color: #269e48;
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- Encabezado con enlace para regresar al inicio -->
+    <header>
+        <a href="/" id="wsm-link">WSM</a>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/sobre-nosotros/">Sobre Nosotros</a>
+            <a href="/ingresar/">Ingresar</a>
+            <a href="/registrarse/">Registrarse</a>
+            <h2>Edificio A</h2>
+        </nav>
+        
+    </header>
+
+    <p>Presione en cualquier baño del mapa para entrar en la descripción del baño más detallada.</p>
+    {% load static %}
+    <img src="{% static 'mapas/edificio_a.jpg' %}" alt="Edificio A" usemap="#image-map"/>
+    <map name="image-map">
+        <area target="_parent" alt="Baño mujeres a #1" title="Baño mujeres a #1" href="/baño/43/" coords="553,229,592,229,594,374,554,374" shape="poly">
+        <area target="_parent" alt="Baño hombres a #1" title="Baño hombres a #1" href="/baño/42/" coords="593,227,637,227,636,375,594,375" shape="poly">
+        <area target="_parent" alt="Baño neutro a" title="Baño neutro a" href="/bañoneutroa" coords="582,375,605,375,604,386,582,388" shape="poly">
+        <area target="_parent" alt="Baño hombres a #2" title="Baño hombres a #2" href="/baño/44/" coords="965,228,1008,230,1009,292,969,293" shape="poly">
+        <area target="_parent" alt="Baño mujeres a #2" title="Baño mujeres a #2" href="/baño/45/" coords="966,292,1009,292,1008,374,990,375,990,345,966,345" shape="poly">
+        <area target="_parent" alt="Baño discapacitado a" title="Baño discapacitado a" href="/baño/46/" coords="966,345,989,345,990,374,966,374" shape="poly">
+    </map>
+    <button onclick="history.back();">Volver</button> 
+</body>
+</html>

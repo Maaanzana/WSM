@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Baño</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            box-sizing: border-box;
+        }
+
+        #wsm-link {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        #wsm-link:hover {
+            color: #45a049;
+        }
+        nav {
+            display: flex;
+            gap: 1px;
+            font-size: 1.2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 8px;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: white;
+            color: #4CAF50;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            text-align: center;
+            margin: 0;
+            flex-grow: 1; /* Hace que el título ocupe el espacio restante */
+            text-align: center;
+        }
+        h2 {
+            font-size: 1.8rem;
+            text-align: center;
+            margin: 0;
+            padding-left: 125px;
+            flex-grow: 1; /* Hace que el título ocupe el espacio restante */
+        }
+
+        .baño-detalle {
+            background-color: #fff;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 90%;
+        }
+
+        .baño-detalle p {
+            margin: 10px 0;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .baño-detalle p strong {
+            color: #4CAF50;
+        }
+
+        .baño-detalle p:last-child {
+            margin-bottom: 0;
+        }
+
+        .baño-detalle p span {
+            display: inline-block;
+            margin-left: 5px;
+            color: #555;
+        }
+
+        .rating-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .rating-container p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+
+        .like-button, .dislike-button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px; /* Espacio entre el icono y el número */
+        }
+
+        .like-button {
+            background-color: #4CAF50;
+        }
+
+        .dislike-button {
+            background-color: #f44336;
+        }
+
+        .like-button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        .dislike-button:hover {
+            background-color: #e53935;
+            transform: scale(1.05);
+        }
+
+        .like-button:active, .dislike-button:active {
+            transform: scale(0.95);
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/" id="wsm-link">WSM</a>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/sobre-nosotros/">Sobre Nosotros</a>
+            <a href="/ingresar/">Ingresar</a>
+            <a href="/registrarse/">Registrarse</a>
+            <h2>Detalles del Baño</h2>
+        </nav>
+        
+    </header>
+
+    <div class="baño-detalle">
+        <p><strong>Edificio:</strong> <span>{{ baño.edificio }}</span></p>
+        <p><strong>Piso:</strong> <span>{{ baño.piso }}</span></p>
+        <p><strong>Tipo:</strong> <span>{{ baño.get_tipo_display }}</span></p>
+        <p><strong>WC:</strong> <span>{{ baño.wc }}</span></p>
+        <p><strong>Urinales:</strong> <span>{{ baño.urinales }}</span></p>
+        <p><strong>Dispensadores de Jabón:</strong> <span>{{ baño.dispensadores_jabon }}</span></p>
+        <p><strong>Secador y/o Papel:</strong> <span>{{ baño.get_secador_o_papel_display }}</span></p>
+        <p><strong>Privacidad:</strong> <span>{{ baño.privacidad }} / 5</span></p>
+        <p><strong>Descripción:</strong> <span>{{ baño.descripcion }}</span></p>
+    </div>
+
+    <div id="baño-{{ baño.id }}" class="rating-container">
+        <button class="like-button" data-id="{{ baño.id }}">
+            👍 Like <span id="likes-count-{{ baño.id }}">{{ baño.likes }}</span>
+        </button>
+        
+        <button class="dislike-button" data-id="{{ baño.id }}">
+            👎 Dislike <span id="dislikes-count-{{ baño.id }}">{{ baño.dislikes }}</span>
+        </button>
+    </div>
+    <div>
+        <button onclick="history.back();">Volver</button> 
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+        // Manejar clicks en botones de "like"
+            document.querySelectorAll('.like-button').forEach(button => {
+                button.addEventListener('click', () => {
+                    const bañoId = button.getAttribute('data-id');
+                    fetch(`/like/${bañoId}/`)
+                        .then(response => response.json())
+                        .then(data => {
+                    // Actualizar el contador de likes
+                            document.getElementById(`likes-count-${bañoId}`).textContent = data.likes;
+                        });
+                });
+            });
+
+    // Manejar clicks en botones de "dislike"
+            document.querySelectorAll('.dislike-button').forEach(button => {
+                button.addEventListener('click', () => {
+                    const bañoId = button.getAttribute('data-id');
+                    fetch(`/dislike/${bañoId}/`)
+                        .then(response => response.json())
+                        .then(data => {
+                    // Actualizar el contador de dislikes
+                            document.getElementById(`dislikes-count-${bañoId}`).textContent = data.dislikes;
+                        });
+                });
+            });
+        });
+    </script>
+
+    <footer>
+        © 2024 WSM
+    </footer>
+</body>
+</html>

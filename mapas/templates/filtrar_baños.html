@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtrar Baños</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            box-sizing: border-box;
+        }
+
+        #wsm-link {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        #wsm-link:hover {
+            color: #45a049;
+        }
+        nav {
+            display: flex;
+            gap: 1px;
+            font-size: 1.2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 8px;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: white;
+            color: #4CAF50;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            text-align: center;
+            margin: 0;
+            flex-grow: 1; /* Hace que el título ocupe el espacio restante */
+            text-align: center;
+        }
+        h2 {
+            font-size: 1.8rem;
+            text-align: center;
+            margin: 0;
+            padding-left: 140px;
+            flex-grow: 1; /* Hace que el título ocupe el espacio restante */
+        }
+        
+        p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .filter-container {
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            max-width: 800px;
+        }
+
+        .filter-container form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: space-between;
+        }
+
+        .filter-container select,
+        .filter-container input,
+        .filter-container button {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            flex: 1 1 200px;
+        }
+
+        .filter-container button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .filter-container button:hover {
+            background-color: #29a45b;
+        }
+
+        .results-container {
+            margin: 20px auto;
+            max-width: 800px;
+        }
+
+        .baño-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .baño-info {
+            flex: 1;
+            text-align: left;
+        }
+
+        .baño-stats {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.5em;
+            color: #4CAF50;
+            margin-right: 20px; /* Margen adicional entre los likes/dislikes y el botón */
+        }
+
+        .baño-stats .likes, .baño-stats .dislikes {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .baño-stats .likes span, .baño-stats .dislikes span {
+            font-size: 0.8em; /* Tamaño más pequeño para los emojis */
+        }
+
+        .baño-stats .dislikes {
+            color: rgb(163, 14, 14); /* El color de los dislikes será rojo */
+        }
+
+        .baño-button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .baño-button:hover {
+            background-color: #45a049;
+        }
+
+        .baño-button:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/" id="wsm-link">WSM</a>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/sobre-nosotros/">Sobre Nosotros</a>
+            <a href="/ingresar/">Ingresar</a>
+            <a href="/registrarse/">Registrarse</a>
+            <h2>Filtrar Baños</h2>
+        </nav>
+        
+    </header>
+
+    <div class="filter-container">
+        <form method="get">
+            <select name="edificio">
+                <option value="">Seleccionar Edificio</option>
+                {% for e in edificios %}
+                <option value="{{ e }}" {% if request.GET.edificio == e %}selected{% endif %}>{{ e }}</option>
+                {% endfor %}
+            </select>
+
+            <select name="piso">
+                <option value="">Seleccionar Piso</option>
+                {% for p in pisos %}
+                <option value="{{ p }}" {% if request.GET.piso == p %}selected{% endif %}>{{ p }}</option>
+                {% endfor %}
+            </select>
+
+            <select name="tipo">
+                <option value="">Seleccionar Tipo</option>
+                {% for t in tipos %}
+                <option value="{{ t }}" {% if request.GET.tipo == t %}selected{% endif %}>{{ t }}</option>
+                {% endfor %}
+            </select>
+
+            <select name="ordenar_por">
+                <option value="">Ordenar por</option>
+                <option value="likes" {% if request.GET.ordenar_por == 'likes' %}selected{% endif %}>Likes</option>
+                <option value="dislikes" {% if request.GET.ordenar_por == 'dislikes' %}selected{% endif %}>Dislikes</option>
+            </select>
+
+            <button type="submit">Filtrar</button>
+
+        </form>
+    </div>
+    <button onclick="history.back();">Volver</button> 
+
+    <div class="results-container">
+        <p>Mostrando {{ baños|length }} baño{{ baños|length|pluralize:"s" }}.</p>
+        {% for baño in baños %}
+        <div class="baño-card">
+            <div class="baño-info">
+                <p><strong>Edificio:</strong> {{ baño.edificio }}</p>
+                <p><strong>Piso:</strong> {{ baño.piso }}</p>
+                <p><strong>Tipo:</strong> {{ baño.get_tipo_display }}</p>
+            </div>
+            <div class="baño-stats">
+                <div class="likes">
+                    <span>👍</span> {{ baño.likes }}
+                </div>
+                <div class="dislikes">
+                    <span>👎</span> {{ baño.dislikes }}
+                </div>
+            </div>
+            <a href="/baño/{{ baño.id }}/" class="baño-button">Ver detalles</a>
+        </div>
+        {% empty %}
+        <p>No se encontraron baños que coincidan con los criterios.</p>
+        {% endfor %}
+    </div>
+
+
+</body>
+</html>

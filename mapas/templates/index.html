@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto de Baños - WSM</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            box-sizing: border-box;
+        }
+
+        #wsm-link {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        #wsm-link:hover {
+            color: #45a049;
+        }
+        nav {
+            display: flex;
+            gap: 1px;
+            font-size: 1.2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 8px;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: white;
+            color: #4CAF50;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            text-align: center;
+            margin: 0;
+            flex-grow: 1; /* Hace que el título ocupe el espacio restante */
+        }
+        h2 {
+            font-size: 1.8rem;
+            text-align: center;
+            margin: 0;
+            padding-left: 120px;
+            flex-grow: 1; /* Hace que el título ocupe el espacio restante */
+        }
+        .content {
+            padding: 30px;
+            background-color: white;
+            margin: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.2em;
+            cursor: pointer;
+            border: none;
+        }
+        .btn:hover {
+            background-color: #269e48;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            margin-top: 30px;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="/" id="wsm-link">WSM</a>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/sobre-nosotros/">Sobre Nosotros</a>
+            <a href="/ingresar/">Ingresar</a>
+            <a href="/registrarse/">Registrarse</a>
+            <h2>Proyecto Baños</h2>
+        </nav>
+        
+    </header>
+
+    <div class="content">
+        <h1>Bienvenido al sistema de baños</h1>
+        <p>Este sistema ha sido desarrollado para facilitar la localización y evaluación de los baños en la Universidad Santa María. Puedes filtrar los baños por edificio, tipo, piso y nivel de satisfacción, o ver un mapa interactivo con la ubicación de los baños.</p>
+
+        <div class="btn-container">
+            <a href="/filtrar" class="btn">Filtrar Baños</a>
+            <a href="/mapa_principal" class="btn">Ver Mapa</a>
+        </div>
+    </div>
+
+    <!--footer>
+        <p>&copy; 2024 Todos los derechos reservados.</p>
+    </footer-->
+
+</body>
+</html>

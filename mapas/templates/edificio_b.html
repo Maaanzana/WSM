@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edificio B</title>
+    <style>
+        /* Diseño base */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            box-sizing: border-box;
+        }
+
+        #wsm-link {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        #wsm-link:hover {
+            color: #45a049;
+        }
+        nav {
+            display: flex;
+            gap: 1px;
+            font-size: 1.2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 8px;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: white;
+            color: #4CAF50;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            text-align: center;
+            margin: 0;
+            flex-grow: 1; /* Hace que el título ocupe el espacio restante */
+            text-align: center;
+        }
+        h2 {
+            font-size: 1.8rem;
+            text-align: center;
+            margin: 0;
+            padding-left: 160px;
+            flex-grow: 1; /* Hace que el título ocupe el espacio restante */
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        #image-container {
+            width: 1240px;
+            height: 640px;
+            border: 3px solid #ddd;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #image-container img {
+            width: auto;
+            height: 100%;
+            max-width: 100%;
+            display: none;
+            border-radius: 10px;
+        }
+
+        /* Mostrar la imagen correspondiente cuando el radio está seleccionado */
+        #radio1:checked ~ #image-container #img1,
+        #radio2:checked ~ #image-container #img2 {
+            display: block;
+        }
+
+        /* Botones de los pisos */
+        .button-container {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .floor-button {
+            padding: 12px 25px;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            text-align: center;
+            user-select: none;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilo para el botón seleccionado */
+        #radio1:checked ~ .button-container label[for="radio1"],
+        #radio2:checked ~ .button-container label[for="radio2"] {
+            background-color: #388E3C;
+            transform: scale(0.95);
+        }
+
+        /* Hover para los botones */
+        .floor-button:hover {
+            background-color: #45a049;
+        }
+
+        /* Efecto de transición para el botón */
+        .floor-button:active {
+            transform: scale(0.98);
+        }
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.2em;
+            cursor: pointer;
+            border: none;
+        }
+        .btn:hover {
+            background-color: #269e48;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/" id="wsm-link">WSM</a>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/sobre-nosotros/">Sobre Nosotros</a>
+            <a href="/ingresar/">Ingresar</a>
+            <a href="/registrarse/">Registrarse</a>
+            <h2>Edificio B</h2>
+        </nav>
+        
+    </header>
+
+    <p>Presione en cualquier baño del mapa para entrar en la descripción del baño más detallada.</p>
+
+    <!-- Radios invisibles para controlar las imágenes -->
+    <input type="radio" name="image-selector" id="radio1" checked style="display:none;">
+    <input type="radio" name="image-selector" id="radio2" style="display:none;">
+
+    {% load static %}
+
+    <div id="image-container">
+        <!-- Imágenes con distintos IDs -->
+        <img id="img1" src="{% static 'mapas/edificio_b#s1.jpg' %}" alt="Piso S1">
+        <img id="img2" src="{% static 'mapas/edificio_b#1.jpg' %}" alt="Piso 1">
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/image-map-resizer/1.0.10/js/imageMapResizer.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            imageMapResize(); // Ajusta las áreas al cargar la primera imagen
+            
+            // Reajustar el mapa de imagen cada vez que cambie la imagen
+            const radios = document.querySelectorAll('input[name="image-selector"]');
+            radios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    setTimeout(imageMapResize, 100); // Ajustar el mapa con un pequeño retraso
+                });
+            });
+        });
+    </script>
+
+    <!-- Botones que activan cada radio -->
+    <div class="button-container">
+        <label for="radio1" class="floor-button">Piso S1</label>
+        <label for="radio2" class="floor-button">Piso 1</label>
+    </div>
+    <button onclick="history.back();">Volver</button> 
+
+</body>
+</html>
