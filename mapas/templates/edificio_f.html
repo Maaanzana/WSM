@@ -28,19 +28,6 @@
             justify-content: flex-start;
             box-sizing: border-box;
         }
-
-        #wsm-link {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white;
-            text-decoration: none;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        #wsm-link:hover {
-            color: #45a049;
-        }
         nav {
             display: flex;
             gap: 1px;
@@ -169,8 +156,8 @@
 </head>
 <body>
     <header>
-        <a href="/" id="wsm-link">WSM</a>
         <nav>
+            <h1>WSM</h1>
             <a href="/">Inicio</a>
             <a href="/sobre-nosotros/">Sobre Nosotros</a>
             <a href="/ingresar/">Ingresar</a>
@@ -196,9 +183,9 @@
         <!-- Imágenes con distintos IDs y `usemap` en cada una -->
         <img id="img1" src="{% static 'mapas/edificio_f#s12.0.jpg' %}" alt="Piso S1" usemap="#img1-map">
         <img id="img2" src="{% static 'mapas/edificio_f#12.0.jpg' %}" alt="Piso 1" usemap="#img2-map">
-        <img id="img3" src="{% static 'mapas/edificio_f#2.jpg' %}" alt="Piso 2" usemap="#img3-map">
-        <img id="img4" src="{% static 'mapas/edificio_f#3.jpg' %}" alt="Piso 3" usemap="#img4-map">
-        <img id="img5" src="{% static 'mapas/edificio_f#4.jpg' %}" alt="Piso 4" usemap="#img5-map">
+        <img id="img3" src="{% static 'mapas/edificio_f#22.0.jpg' %}" alt="Piso 2" usemap="#img3-map">
+        <img id="img4" src="{% static 'mapas/edificio_f#32.0.jpg' %}" alt="Piso 3" usemap="#img4-map">
+        <img id="img5" src="{% static 'mapas/edificio_f#42.0.jpg' %}" alt="Piso 4" usemap="#img5-map">
     </div>
 
     <map name="#img1-map">
@@ -213,13 +200,20 @@
     </map>
 
     <map name="#img3-map">
-        <!-- Mapa para el Piso 2 (por definir) -->
+        <area target="_parent" alt="Baño mujer #2" title="Baño mujer #2" href="/baño/9/" coords="7369,2267,7613,2259,7621,2519,7369,2519" shape="poly">
+        <area target="_parent" alt="Baño hombre #2" title="Baño hombre #2" href="/baño/8/" coords="7101,2259,7369,2259,7378,2527,7101,2519" shape="poly">
     </map>
     <map name="#img4-map">
-        <!-- Mapa para el Piso 3 (por definir) -->
+        <area target="_parent" alt="Baño discapacitado #3" title="Baño discapacitado #3" href="/baño/11/" coords="1545,1110,1754,1116,1754,1293,1552,1293" shape="poly">
+        <area target="_parent" alt="Baño neutro #3" title="Baño neutro #3" href="/baño/10/" coords="2288,858,2425,865,2425,982,2288,982" shape="poly">
+        <area target="_parent" alt="Baño neutro #3" title="Baño neutro #3" href="/baño/10/" coords="2295,982,2425,982,2432,1106,2295,1100" shape="poly">
     </map>
     <map name="#img5-map">
-        <!-- Mapa para el Piso 4 (por definir) -->
+        <area target="_parent" alt="Baño hombre F #4" title="Baño hombre F #4" href="/baño/12/" coords="5183,2346,5480,2346,5480,2636,5183,2636" shape="poly">
+        <area target="_parent" alt="Baño mujeres F #4" title="Baño mujeres F #4" href="/baño/13/" coords="5473,2339,5777,2339,5770,2629,5480,2636" shape="poly">
+        <area target="_parent" alt="Baño mujer #4" title="Baño mujer #4" href="/baño/47/" coords="6419,1227,6550,1227,6550,1330,6419,1330" shape="poly">
+        <area target="_parent" alt="Baño neutro #4" title="Baño neutro #4" href="/baño/49/" coords="6426,1330,6550,1330,6550,1427,6426,1420" shape="poly">
+        <area target="_parent" alt="Baño hombre #4" title="Baño hombre #4" href="/baño/48/" coords="6426,1427,6550,1427,6550,1517,6419,1517" shape="poly">
     </map>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

@@ -28,19 +28,6 @@
             justify-content: flex-start;
             box-sizing: border-box;
         }
-
-        #wsm-link {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white;
-            text-decoration: none;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        #wsm-link:hover {
-            color: #45a049;
-        }
         nav {
             display: flex;
             gap: 1px;
@@ -73,6 +60,11 @@
             margin: 0;
             padding-left: 120px;
             flex-grow: 1; /* Hace que el título ocupe el espacio restante */
+        }
+        p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 40px;
         }
         .content {
             padding: 30px;
@@ -118,15 +110,14 @@
 <body>
 
     <header>
-        <a href="/" id="wsm-link">WSM</a>
         <nav>
+            <h1>WSM</h1>
             <a href="/">Inicio</a>
             <a href="/sobre-nosotros/">Sobre Nosotros</a>
             <a href="/ingresar/">Ingresar</a>
             <a href="/registrarse/">Registrarse</a>
             <h2>Proyecto Baños</h2>
         </nav>
-        
     </header>
 
     <div class="content">

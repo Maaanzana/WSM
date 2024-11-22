@@ -29,19 +29,6 @@
             justify-content: flex-start;
             box-sizing: border-box;
         }
-
-        #wsm-link {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white;
-            text-decoration: none;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        #wsm-link:hover {
-            color: #45a049;
-        }
         nav {
             display: flex;
             gap: 1px;
@@ -94,7 +81,6 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-
         #image-container img {
             width: auto;
             height: 100%;
@@ -102,14 +88,10 @@
             display: none;
             border-radius: 10px;
         }
-
-        /* Mostrar la imagen correspondiente cuando el radio está seleccionado */
         #radio1:checked ~ #image-container #img1,
         #radio2:checked ~ #image-container #img2 {
             display: block;
         }
-
-        /* Botones de los pisos */
         .button-container {
             margin-top: 20px;
             display: flex;
@@ -117,7 +99,6 @@
             gap: 15px;
             justify-content: center;
         }
-
         .floor-button {
             padding: 12px 25px;
             background-color: #4CAF50;
@@ -131,20 +112,14 @@
             transition: background-color 0.3s, transform 0.2s;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-
-        /* Estilo para el botón seleccionado */
         #radio1:checked ~ .button-container label[for="radio1"],
         #radio2:checked ~ .button-container label[for="radio2"] {
             background-color: #388E3C;
             transform: scale(0.95);
         }
-
-        /* Hover para los botones */
         .floor-button:hover {
             background-color: #45a049;
         }
-
-        /* Efecto de transición para el botón */
         .floor-button:active {
             transform: scale(0.98);
         }
@@ -165,8 +140,8 @@
 </head>
 <body>
     <header>
-        <a href="/" id="wsm-link">WSM</a>
         <nav>
+            <h1>WSM</h1>
             <a href="/">Inicio</a>
             <a href="/sobre-nosotros/">Sobre Nosotros</a>
             <a href="/ingresar/">Ingresar</a>
@@ -212,6 +187,5 @@
         <label for="radio2" class="floor-button">Piso 1</label>
     </div>
     <button onclick="history.back();">Volver</button> 
-
 </body>
 </html>
